@@ -30,7 +30,7 @@ io.on('connect', function(socket) {
   var questionNum = 0; // keep count of question, used for IF condition.
   socket.on('loaded', function() { // we wait until the client has loaded and contacted us that it is ready to go.
 
-    socket.emit('answer', "Hey, hello I am \"___*-\" a simple chat bot example."); //We start with the introduction;
+    socket.emit('answer', "Hello I'm JokeBot."); //We start with the introduction;
     setTimeout(timedQuestion, 5000, socket, "What is your name?"); // Wait a moment and respond with a question.
 
   });
@@ -45,50 +45,62 @@ io.on('connect', function(socket) {
 //--------------------------CHAT BOT FUNCTION-------------------------------//
 function bot(data, socket, questionNum) {
   var input = data; // This is generally really terrible from a security point of view ToDo avoid code injection
+  var name;
   var answer;
   var question;
-  var waitTime;
+  var waitTime
 
   /// These are the main statments that make up the conversation.
   if (questionNum == 0) {
-    answer = 'Hello ' + input + ' :-)'; // output response
+    userName = input;
+    answer = 'Hi ' + userName + ' :-)'; // output response
     waitTime = 5000;
-    question = 'How old are you?'; // load next question
+    question = 'Would you like to hear a joke?'; // load next question
   } else if (questionNum == 1) {
-    answer = 'Really, ' + input + ' years old? So that means you were born in: ' + (2018 - parseInt(input)); // output response
-    waitTime = 5000;
-    question = 'Where do you live?'; // load next question
-  } else if (questionNum == 2) {
-    answer = 'Cool! I have never been to ' + input + '.';
-    waitTime = 5000;
-    question = 'Whats your favorite color?'; // load next question
-  } else if (questionNum == 3) {
-    answer = 'Ok, ' + input + ' it is.';
-    socket.emit('changeBG', input.toLowerCase());
-    waitTime = 5000;
-    question = 'Can you still read the font?'; // load next question
-  } else if (questionNum == 4) {
-    if (input.toLowerCase() === 'yes' || input === 1) {
-      answer = 'Perfect!';
+    if (input.toLowerCase() === 'yes' || input === 1){
+      answer = 'Heh heh, alright you\'re gonna love this.' 
       waitTime = 5000;
-      question = 'Whats your favorite place?';
+      question = 'What has 4 wheels and flies?'; // load next question
+    } else if (input.toLowerCase() === 'no' || input === 0){
+      answer = 'Aw come on... Its really funny!'
+      waitTime = 5000;
+      question = 'What has 4 wheels and flies?';}
+  } else if (questionNum == 2) {
+    socket.emit('changeBG', 'blue');
+    answer = 'A garbage truck!!!';
+    waitTime = 5000;
+    question = 'Wasn\'t that funny ' + userName + ' ?'; // load next question
+  } else if (questionNum == 3) {
+    if (input.toLowerCase() === 'yes' || input === 1) {
+      answer = 'Thanks! I\'ve been working on my jokes.';
+      waitTime = 5000;
+      question = 'Do you want to hear another?';
     } else if (input.toLowerCase() === 'no' || input === 0) {
-      socket.emit('changeFont', 'white'); /// we really should look up the inverse of what we said befor.
-      answer = ''
-      question = 'How about now?';
-      waitTime = 0;
-      questionNum--; // Here we go back in the question number this can end up in a loop
-    } else {
-      question = 'Can you still read the font?'; // load next question
-      answer = 'I did not understand you. Could you please answer "yes" or "no"?'
-      questionNum--;
+      answer = 'I thought it was pretty funny...'
+      question = 'Do you want to hear another?';
       waitTime = 5000;
     }
     // load next question
+  } else if (questionNum == 4) {
+    if (input.toLowerCase() === 'yes' || input === 1){
+      answer = 'Alright.' 
+      waitTime = 5000;
+      question = 'What\'s the difference between a velodrome and a palindrome?'; // load next question
+    } else if (input.toLowerCase() === 'no' || input === 0){
+      answer = 'You\'re kind of boring aren\'t you?'
+      waitTime = 5000;
+      question = 'What\'s the difference between a velodrome and a palindrome?';}
+  } else if (questionNum == 5) {
+    answer = 'For one, you have to use a bicycle. For the other, you can use a racecar!'
+    waitTime = 5000;
+    question = 'Okay, you have to admit that one was pretty good, wasn\'t it?';
   } else {
-    answer = 'I have nothing more to say!'; // output response
-    waitTime = 0;
-    question = '';
+    if (input.toLowerCase() === 'yes' || input === 1){
+    answer = 'Thanks. Maybe I\'ll become a comic.';
+    question = ''; 
+    } else if (input.toLowerCase() === 'no' || input === 0){
+      answer = '>:('
+      question = '';}
   }
 
 
