@@ -1,18 +1,16 @@
 # ChatBot
 
-*A lab report by John Q. Student*
+*A lab report by Tomi Kalejaiye*
 
 ## In this Report
 
-To submit your lab, fork [this repository](https://github.com/FAR-Lab/IDD-Fa18-Lab6). You'll need to upload any code you change into your fork, as well as upload a video of a friend or classmate using your chatbot.
+## How I made JokeBot
 
-## Make the ChatBot your own
+I turned the baseline chatbot into a JokeBot. It now tells the user jokes, asks them what they think about the jokes, and responds accordingly. I created conditional branches where based on user responses to the jokes, the bot would either respond positively or negatively. I also added a variable for saving the user's name so it can be referenced again later. 
 
-**Describe what changes you made to the baseline chatbot here. Don't forget to push your modified code to this repository.**
+## A Friend Trying JokeBot
 
-## Record someone trying out your ChatBot
-
-**Using a phone or other video device, record someone trying out your ChatBot. Upload that video to this repository and link to it here!**
+[Video of a friend trying JokeBot](https://photos.app.goo.gl/VNXtSHFzkjLne2gP6)
 
 ---
 Starter code by [David Goedicke](mailto:da.goedicke@gmail.com), closely based on work by [Nikolas Martelaro](mailto:nmartelaro@gmail.com) and [Captain Anonymous](https://codepen.io/anon/pen/PEVYXz), who forked original work by [Ian Tairea](https://codepen.io/mrtairea/pen/yJapwv).
